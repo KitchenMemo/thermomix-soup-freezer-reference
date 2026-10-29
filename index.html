@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thermomix Soup Freezer Reference: Lookup Table for 26 Soups</title>
+<meta name="description" content="Sortable, filterable freezer lookup for Thermomix soups: which to freeze as is, which need a tweak, what to hold back, storage times, reheating temperatures and fixes.">
+<style>
+:root{
+  --bg:#f7f6f2; --card:#ffffff; --ink:#1d2421; --muted:#5b6660; --line:#dcdad2;
+  --accent:#1f6f5c; --accent-soft:#e3f1ed;
+  --asis:#1f7a4d; --asis-bg:#dff3e7;
+  --tweak:#8a5a00; --tweak-bg:#fbefd2;
+  --base:#1d5f99; --base-bg:#dcebf8;
+  --rethink:#a13030; --rethink-bg:#f9dede;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#14181a; --card:#1d2325; --ink:#e8ece9; --muted:#9aa6a0; --line:#2f3a3d;
+    --accent:#5cc2a8; --accent-soft:#1c3530;
+    --asis:#7fdca6; --asis-bg:#1d3a2b;
+    --tweak:#f0c36a; --tweak-bg:#3d3216;
+    --base:#8fc3f0; --base-bg:#1b3047;
+    --rethink:#f09a9a; --rethink-bg:#431f1f;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.75rem;margin:0 0 4px;line-height:1.2}
+h2{font-size:1.2rem;margin:36px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+.sub{color:var(--muted);margin:0 0 18px}
+.callout{background:var(--accent-soft);border-left:5px solid var(--accent);border-radius:6px;padding:14px 18px;margin:16px 0}
+.callout strong.t{display:block;margin-bottom:6px}
+.callout ul{margin:0;padding-left:20px}
+.callout li{margin:3px 0}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:16px 0}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.chip b{display:block;font-size:1.25rem;color:var(--accent)}
+.chip span{font-size:.85rem;color:var(--muted)}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+.controls input,.controls select,.controls button{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+.controls input{flex:1 1 220px;min-width:180px}
+.controls button{cursor:pointer}
+.controls button:hover{border-color:var(--accent)}
+#count{color:var(--muted);font-size:.9rem;margin-left:auto}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{padding:9px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{background:var(--card);position:sticky;top:0;white-space:nowrap;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--line)}
+th.s{cursor:pointer;user-select:none}
+th.s:hover{color:var(--accent)}
+th.s::after{content:" \2195";opacity:.4}
+th.s[aria-sort=ascending]::after{content:" \25B2";opacity:1}
+th.s[aria-sort=descending]::after{content:" \25BC";opacity:1}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--accent-soft)}
+td:first-child{font-weight:600}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.78rem;font-weight:600;white-space:nowrap}
+.as-is{background:var(--asis-bg);color:var(--asis)}
+.tweak{background:var(--tweak-bg);color:var(--tweak)}
+.base{background:var(--base-bg);color:var(--base)}
+.rethink{background:var(--rethink-bg);color:var(--rethink)}
+.risk{font-weight:600}
+.risk.low{color:var(--asis)} .risk.medium{color:var(--tweak)} .risk.high{color:var(--rethink)}
+.src{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.note{font-size:.85rem;color:var(--muted);margin:8px 2px}
+#empty{display:none;padding:18px;text-align:center;color:var(--muted)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+ol.steps{margin:8px 0;padding-left:22px}
+ol.steps li{margin:4px 0}
+footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+footer a{color:var(--accent)}
+@media (max-width:600px){h1{font-size:1.45rem} #count{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Thermomix Soup Freezer Reference</h1>
+<p class="sub">Lookup table for 26 soups: what to freeze as is, what to hold back, and how to fix it after thawing. Plus storage limits, reheating temperatures and a troubleshooting grid.</p>
+
+<div class="callout">
+  <strong class="t">Quick Reference</strong>
+  <ul>
+    <li><b>Best quality window:</b> 2&ndash;3 months at 0&deg;F (&minus;18&deg;C). Continuously frozen soup stays safe longer, but quality declines.</li>
+    <li><b>Before freezing:</b> refrigerate cooked soup 3&ndash;4 days max (USDA) or 48 hours (UK FSA). Day 5 means discard, not freeze.</li>
+    <li><b>Cooling:</b> no more than 2 hours at room temperature. Use shallow containers.</li>
+    <li><b>Reheat to:</b> 165&deg;F (74&deg;C) throughout; bring soups to a rolling boil.</li>
+    <li><b>Rule of thumb:</b> starch (potato, rice, pasta) and dairy/coconut milk are the texture risks. Freeze the base, finish after thawing.</li>
+  </ul>
+</div>
+
+<div class="chips">
+  <div class="chip"><b>2&ndash;3 mo</b><span>best-quality freezer time</span></div>
+  <div class="chip"><b>3&ndash;4 days</b><span>max fridge time before freezing (USDA)</span></div>
+  <div class="chip"><b>2 hours</b><span>max at room temperature</span></div>
+  <div class="chip"><b>165&deg;F / 74&deg;C</b><span>reheat target, whole portion</span></div>
+</div>
+
+<h2>Soup lookup</h2>
+<div class="controls">
+  <input id="q" type="search" placeholder="Search soup, ingredient or fix (e.g. potato, cream, noodles)" aria-label="Search soups">
+  <select id="fv" aria-label="Filter by verdict">
+    <option value="">All verdicts</option>
+    <option value="as-is">Freeze as is</option>
+    <option value="tweak">Freeze with a tweak</option>
+    <option value="base">Freeze the base</option>
+    <option value="rethink">Rethink</option>
+  </select>
+  <select id="fr" aria-label="Filter by texture risk">
+    <option value="">Any texture risk</option>
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+  <select id="fb" aria-label="Filter by basis">
+    <option value="">All entries</option>
+    <option value="guide">From the guide</option>
+    <option value="extended">Extended</option>
+  </select>
+  <button id="reset" type="button">Reset</button>
+  <span id="count" aria-live="polite"></span>
+</div>
+
+<div class="tw">
+<table id="soups">
+<thead>
+<tr>
+  <th class="s" data-col="0" scope="col">Soup</th>
+  <th class="s" data-col="1" scope="col">Type</th>
+  <th class="s" data-col="2" scope="col">Verdict</th>
+  <th class="s" data-col="3" scope="col">Texture risk</th>
+  <th scope="col">Hold back before freezing</th>
+  <th scope="col">Add after thawing</th>
+  <th scope="col">If it goes wrong</th>
+  <th class="s" data-col="7" scope="col">Basis</th>
+</tr>
+</thead>
+<tbody>
+<tr data-v="as-is" data-r="low" data-b="guide"><td>Tomato</td><td>Blended vegetable</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Delicate herbs</td><td>Fresh herbs at serving</td><td>Check thickness; reheat thoroughly, re-blend briefly</td><td class="src">Guide</td></tr>
+<tr data-v="as-is" data-r="low" data-b="guide"><td>Carrot</td><td>Blended vegetable</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Delicate herbs, cream</td><td>Herbs or cream at serving</td><td>Check smoothness; brief re-blend</td><td class="src">Guide</td></tr>
+<tr data-v="as-is" data-r="low" data-b="guide"><td>Pumpkin</td><td>Blended vegetable</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Cream, fresh herbs</td><td>Cream while reheating</td><td>Brief re-blend if slightly separated</td><td class="src">Guide</td></tr>
+<tr data-v="as-is" data-r="low" data-b="guide"><td>Lentil</td><td>Legume</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Nothing</td><td>Extra liquid if it has thickened</td><td>Thin with stock or water; recheck seasoning</td><td class="src">Guide</td></tr>
+<tr data-v="as-is" data-r="low" data-b="guide"><td>Vegan vegetable</td><td>Vegetable &amp; legume</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Nothing (herbs optional)</td><td>Liquid if needed</td><td>Adjust liquid; recheck seasoning</td><td class="src">Guide</td></tr>
+<tr data-v="as-is" data-r="medium" data-b="guide"><td>Chicken &amp; vegetable</td><td>Broth-based</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="2"><span class="risk medium">Medium</span></td><td>Delicate vegetables (optional)</td><td>Fresh vegetables or herbs</td><td>Softer vegetables are expected; not fully reversible</td><td class="src">Guide</td></tr>
+<tr data-v="tweak" data-r="medium" data-b="guide"><td>Chicken noodle</td><td>Broth + starch</td><td data-s="2"><span class="badge tweak">Freeze with a tweak</span></td><td data-s="2"><span class="risk medium">Medium</span></td><td>Noodles</td><td>Freshly cooked noodles while reheating</td><td>Remove overly soft noodles; add fresh ones</td><td class="src">Guide</td></tr>
+<tr data-v="tweak" data-r="medium" data-b="guide"><td>Minestrone</td><td>Broth + starch</td><td data-s="2"><span class="badge tweak">Freeze with a tweak</span></td><td data-s="2"><span class="risk medium">Medium</span></td><td>Pasta</td><td>Separately cooked pasta</td><td>Adjust the base on its own; add pasta last</td><td class="src">Guide</td></tr>
+<tr data-v="tweak" data-r="high" data-b="guide"><td>Leek &amp; potato</td><td>Starchy, blended</td><td data-s="2"><span class="badge tweak">Freeze with a tweak</span></td><td data-s="3"><span class="risk high">High</span></td><td>Nothing; freeze in portions</td><td>Nothing required</td><td>Reheat, then re-blend briefly. Over-blending makes it pasty</td><td class="src">Guide</td></tr>
+<tr data-v="tweak" data-r="medium" data-b="guide"><td>French onion</td><td>Broth + toppings</td><td data-s="2"><span class="badge tweak">Freeze with a tweak</span></td><td data-s="2"><span class="risk medium">Medium</span></td><td>Bread, cheese topping</td><td>Toasted bread and cheese at serving</td><td>Rebuild the toppings fresh</td><td class="src">Guide</td></tr>
+<tr data-v="base" data-r="high" data-b="guide"><td>Cream-finished</td><td>Creamy</td><td data-s="3"><span class="badge base">Freeze the base</span></td><td data-s="3"><span class="risk high">High</span></td><td>Cream</td><td>Cream while reheating</td><td>Reheat gently, then a short re-blend</td><td class="src">Guide</td></tr>
+<tr data-v="base" data-r="high" data-b="guide"><td>Cheese-finished</td><td>Creamy</td><td data-s="3"><span class="badge base">Freeze the base</span></td><td data-s="3"><span class="risk high">High</span></td><td>Cheese</td><td>Cheese during reheating or at serving</td><td>Reheat gently, then a short re-blend</td><td class="src">Guide</td></tr>
+<tr data-v="base" data-r="high" data-b="guide"><td>Coconut-milk-finished</td><td>Creamy</td><td data-s="3"><span class="badge base">Freeze the base</span></td><td data-s="3"><span class="risk high">High</span></td><td>Coconut milk</td><td>Coconut milk while reheating</td><td>Reheat gently, then a short re-blend</td><td class="src">Guide</td></tr>
+<tr data-v="as-is" data-r="low" data-b="extended"><td>Butternut squash</td><td>Blended vegetable</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Cream, fresh herbs</td><td>Cream at serving</td><td>Brief re-blend</td><td class="src">Extended</td></tr>
+<tr data-v="as-is" data-r="low" data-b="extended"><td>Sweet potato</td><td>Blended vegetable</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Cream, fresh herbs</td><td>Herbs at serving</td><td>Brief re-blend; avoid over-blending a starchy soup</td><td class="src">Extended</td></tr>
+<tr data-v="as-is" data-r="low" data-b="extended"><td>Cauliflower (no dairy)</td><td>Blended vegetable</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Nothing</td><td>Fresh herbs</td><td>Brief re-blend; recheck seasoning</td><td class="src">Extended</td></tr>
+<tr data-v="as-is" data-r="low" data-b="extended"><td>Split pea</td><td>Legume</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Nothing</td><td>Liquid to loosen</td><td>Thin with stock or water; recheck seasoning</td><td class="src">Extended</td></tr>
+<tr data-v="as-is" data-r="low" data-b="extended"><td>Black bean</td><td>Legume</td><td data-s="1"><span class="badge as-is">Freeze as is</span></td><td data-s="1"><span class="risk low">Low</span></td><td>Nothing</td><td>Fresh herbs, a squeeze of acid</td><td>Adjust liquid; recheck seasoning</td><td class="src">Extended</td></tr>
+<tr data-v="tweak" data-r="medium" data-b="extended"><td>Chicken &amp; rice</td><td>Broth + starch</td><td data-s="2"><span class="badge tweak">Freeze with a tweak</span></td><td data-s="2"><span class="risk medium">Medium</span></td><td>Rice</td><td>Freshly cooked rice</td><td>Remove soft rice; add fresh</td><td class="src">Extended</td></tr>
+<tr data-v="tweak" data-r="medium" data-b="extended"><td>Beef &amp; vegetable</td><td>Broth-based</td><td data-s="2"><span class="badge tweak">Freeze with a tweak</span></td><td data-s="2"><span class="risk medium">Medium</span></td><td>Pasta, barley or potato chunks, if included</td><td>Separately cooked starch</td><td>Expect softer vegetables; add fresh starch</td><td class="src">Extended</td></tr>
+<tr data-v="base" data-r="high" data-b="extended"><td>Cream of tomato</td><td>Creamy</td><td data-s="3"><span class="badge base">Freeze the base</span></td><td data-s="3"><span class="risk high">High</span></td><td>Cream</td><td>Cream while reheating</td><td>Reheat gently, then a short re-blend</td><td class="src">Extended</td></tr>
+<tr data-v="base" data-r="high" data-b="extended"><td>Cream of mushroom</td><td>Creamy</td><td data-s="3"><span class="badge base">Freeze the base</span></td><td data-s="3"><span class="risk high">High</span></td><td>Cream</td><td>Cream while reheating</td><td>Reheat gently, then a short re-blend</td><td class="src">Extended</td></tr>
+<tr data-v="base" data-r="high" data-b="extended"><td>Broccoli &amp; cheese</td><td>Creamy</td><td data-s="3"><span class="badge base">Freeze the base</span></td><td data-s="3"><span class="risk high">High</span></td><td>Cheese, cream</td><td>Cheese during reheating</td><td>Reheat gently, then a short re-blend</td><td class="src">Extended</td></tr>
+<tr data-v="base" data-r="high" data-b="extended"><td>Corn or potato chowder</td><td>Starchy + creamy</td><td data-s="3"><span class="badge base">Freeze the base</span></td><td data-s="3"><span class="risk high">High</span></td><td>Cream or milk; potato cubes if you want them firm</td><td>Cream while reheating</td><td>Potato can turn grainy; brief re-blend only if the soup is meant to be smooth</td><td class="src">Extended</td></tr>
+<tr data-v="base" data-r="high" data-b="extended"><td>Pumpkin &amp; coconut</td><td>Creamy (coconut)</td><td data-s="3"><span class="badge base">Freeze the base</span></td><td data-s="3"><span class="risk high">High</span></td><td>Coconut milk</td><td>Coconut milk while reheating</td><td>Reheat gently, then a short re-blend</td><td class="src">Extended</td></tr>
+<tr data-v="rethink" data-r="high" data-b="extended"><td>Gazpacho (cold, raw)</td><td>Raw blended</td><td data-s="4"><span class="badge rethink">Rethink</span></td><td data-s="3"><span class="risk high">High</span></td><td>Everything. Consider not freezing</td><td>n/a</td><td>Raw vegetables soften when frozen; usually better made fresh</td><td class="src">Extended</td></tr>
+</tbody>
+</table>
+<div id="empty">No soups match those filters.</div>
+</div>
+<p class="note"><b>Basis:</b> &ldquo;Guide&rdquo; rows come from the source guide. &ldquo;Extended&rdquo; rows apply the same ingredient logic (starch, dairy, coconut milk, delicate toppings) to additional soups. All verdicts and risk labels are ingredient-based guidance, not measured freezer-test results. Texture depends on recipe, storage time, thawing and reheating.</p>
+
+<h2>Add-after-thawing lookup</h2>
+<div class="tw">
+<table>
+<thead><tr><th>Ingredient</th><th>Why hold it back</th><th>When to add</th></tr></thead>
+<tbody>
+<tr><td>Cream</td><td>Can separate or turn grainy</td><td>While reheating</td></tr>
+<tr><td>Coconut milk</td><td>Can separate or turn grainy</td><td>While reheating</td></tr>
+<tr><td>Cheese / cheese topping</td><td>Can separate or turn grainy; topping texture is lost</td><td>During reheating or at serving</td></tr>
+<tr><td>Noodles / pasta</td><td>Keep absorbing liquid and soften further in storage</td><td>Cook separately, add while reheating</td></tr>
+<tr><td>Rice</td><td>Absorbs liquid and softens further</td><td>Cook separately, add while reheating</td></tr>
+<tr><td>Potato pieces</td><td>Can turn grainy or pasty</td><td>Add fresh if firm pieces matter</td></tr>
+<tr><td>Fresh herbs</td><td>Delicate; flavour fades</td><td>Just before serving</td></tr>
+<tr><td>Croutons / toasted bread</td><td>Go soggy</td><td>Just before serving</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Storage and safety limits</h2>
+<div class="tw">
+<table>
+<thead><tr><th>Stage</th><th>Limit</th><th>Quality note</th><th>Safety note</th></tr></thead>
+<tbody>
+<tr><td>Room-temperature cooling</td><td>No more than 2 hours (USDA)</td><td>Long exposure not recommended</td><td>Discard soup left out beyond the limit</td></tr>
+<tr><td>Refrigerator after cooking</td><td>USDA: 3&ndash;4 days<br>UK FSA: 48 hours</td><td>Use sooner for best flavour</td><td>Follow the guidance for your location</td></tr>
+<tr><td>Freezer at 0&deg;F (&minus;18&deg;C)</td><td>2&ndash;3 months for best quality</td><td>Flavour and texture may decline afterwards</td><td>Safe indefinitely if handled properly and kept continuously frozen</td></tr>
+<tr><td>Refreezing</td><td>Only if thawed in the fridge and kept chilled</td><td>Texture may deteriorate</td><td>Do not refreeze soup left at room temperature over 2 hours</td></tr>
+<tr><td>Reheating</td><td>165&deg;F (74&deg;C) throughout; rolling boil for soups</td><td>Stir and check cold spots</td><td>Use a food thermometer for thick soup or large portions</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Containers, reheating and fixes</h2>
+<div class="two">
+<div>
+<h3 style="font-size:1rem;margin:0 0 8px">Container options</h3>
+<div class="tw"><table>
+<thead><tr><th>Option</th><th>Best for</th><th>Watch for</th></tr></thead>
+<tbody>
+<tr><td>Rigid freezer containers</td><td>Family portions, liquid soup</td><td>Take more freezer space; leave headspace</td></tr>
+<tr><td>Freezer bags</td><td>Flat, space-saving portions</td><td>Careful sealing; do not overfill</td></tr>
+<tr><td>Silicone freezer trays</td><td>Small portions</td><td>Transfer after freezing; follow tray fill guidance</td></tr>
+</tbody></table></div>
+</div>
+<div>
+<h3 style="font-size:1rem;margin:0 0 8px">Reheating methods</h3>
+<div class="tw"><table>
+<thead><tr><th>Method</th><th>Best for</th><th>Watch for</th></tr></thead>
+<tbody>
+<tr><td>Microwave</td><td>Single portions</td><td>Stir; check several spots for cold areas</td></tr>
+<tr><td>Stovetop</td><td>Larger batches; soups needing stirring</td><td>Stir while it loosens</td></tr>
+<tr><td>Thermomix</td><td>Thawed soup needing a re-blend</td><td>Use settings approved for your model (TM31, TM5, TM6 and newer differ); never exceed the max fill line</td></tr>
+</tbody></table></div>
+</div>
+</div>
+
+<h2>Troubleshooting</h2>
+<div class="tw">
+<table>
+<thead><tr><th>Problem</th><th>Likely cause</th><th>Fix</th><th>Prevent next time</th></tr></thead>
+<tbody>
+<tr><td>Separated or curdled</td><td>Cream or coconut milk froze</td><td>Reheat gently, short re-blend</td><td>Freeze the base; add dairy while reheating</td></tr>
+<tr><td>Grainy</td><td>Potato starch</td><td>Brief re-blend of a smooth soup (not a cure-all)</td><td>Portion and check texture; avoid over-blending</td></tr>
+<tr><td>Mushy</td><td>Noodles or rice sat in broth</td><td>Remove soft pieces, add freshly cooked</td><td>Freeze without starch</td></tr>
+<tr><td>Watery</td><td>Water released during freezing and thawing</td><td>Simmer gently to reduce; blend in some cooked vegetables for body; recheck seasoning</td><td>Slightly less liquid in the base</td></tr>
+<tr><td>Bland</td><td>Flavour reads differently after freezing</td><td>Add salt cautiously, then fresh herbs, lemon juice or vinegar; taste between additions</td><td>Season at reheating, not before freezing</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Freeze-the-base method</h2>
+<ol class="steps">
+  <li>Cook the soup, stopping before delicate finishing ingredients.</li>
+  <li>Move to shallow containers and cool promptly.</li>
+  <li>Refrigerate, then freeze in labelled, dated portions with headspace.</li>
+  <li>Thaw safely (fridge overnight is predictable); frozen soup can also be reheated in a saucepan or microwave.</li>
+  <li>Add cream, coconut milk, cooked pasta or rice, or fresh herbs.</li>
+  <li>Reheat to 165&deg;F (74&deg;C); blend briefly if a smooth soup needs it, following your model&rsquo;s hot-liquid instructions.</li>
+</ol>
+
+<footer>
+  <p>Data compiled from and expanded on this <a href="https://kitchenmemo.com/can-you-freeze-thermomix-soup/">Thermomix soup freezing guide</a>. Food-safety figures follow USDA and UK Food Standards Agency guidance as summarised there; follow your local rules if they are stricter. This page is a quick-reference tool, not medical or food-safety certification.</p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var tbody = document.querySelector('#soups tbody');
+  var rows = Array.prototype.slice.call(tbody.rows);
+  var q = document.getElementById('q'),
+      fv = document.getElementById('fv'),
+      fr = document.getElementById('fr'),
+      fb = document.getElementById('fb'),
+      count = document.getElementById('count'),
+      empty = document.getElementById('empty');
+
+  function apply() {
+    var term = q.value.trim().toLowerCase(), shown = 0;
+    rows.forEach(function (r) {
+      var ok = (!fv.value || r.dataset.v === fv.value) &&
+               (!fr.value || r.dataset.r === fr.value) &&
+               (!fb.value || r.dataset.b === fb.value) &&
+               (!term || r.textContent.toLowerCase().indexOf(term) !== -1);
+      r.hidden = !ok;
+      if (ok) shown++;
+    });
+    count.textContent = shown + ' of ' + rows.length + ' soups';
+    empty.style.display = shown ? 'none' : 'block';
+  }
+
+  [q, fv, fr, fb].forEach(function (el) {
+    el.addEventListener(el === q ? 'input' : 'change', apply);
+  });
+  document.getElementById('reset').addEventListener('click', function () {
+    q.value = ''; fv.value = ''; fr.value = ''; fb.value = '';
+    apply();
+  });
+
+  function key(r, col) {
+    var c = r.cells[col];
+    return c.dataset.s ? parseInt(c.dataset.s, 10) : c.textContent.trim().toLowerCase();
+  }
+  var heads = document.querySelectorAll('th.s');
+  Array.prototype.forEach.call(heads, function (th) {
+    th.addEventListener('click', function () {
+      var col = parseInt(th.dataset.col, 10),
+          dir = th.getAttribute('aria-sort') === 'ascending' ? -1 : 1;
+      Array.prototype.forEach.call(heads, function (h) { h.removeAttribute('aria-sort'); });
+      th.setAttribute('aria-sort', dir === 1 ? 'ascending' : 'descending');
+      rows.sort(function (a, b) {
+        var x = key(a, col), y = key(b, col);
+        if (x < y) return -1 * dir;
+        if (x > y) return 1 * dir;
+        return a.cells[0].textContent.localeCompare(b.cells[0].textContent);
+      });
+      rows.forEach(function (r) { tbody.appendChild(r); });
+    });
+  });
+
+  apply();
+})();
+</script>
+</body>
+</html>
